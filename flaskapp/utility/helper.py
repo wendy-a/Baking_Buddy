@@ -4,9 +4,9 @@ from werkzeug.utils import secure_filename
 import uuid
 
 AWS_BUCKET_NAME = "bakingbuddy"
-AWS_ACCESS_KEY = "AKIATNCRJ6QZ3JJW3TM4"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_DOMAIN = "https://bakingbuddy.s3.us-west-2.amazonaws.com"
+AWS_ACCESS_KEY = "<accesskey>"
+AWS_SECRET_ACCESS_KEY = "<secretkey>"
+AWS_DOMAIN = "<s3domain>"
 
 s3 = boto3.client(
     "s3",
