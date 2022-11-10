@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <title>Landing Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/dashboard.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1 class="landing_title">Baking Buddy</h1>
+
+
+    <div class="landing_container_box">
+        {# register section#}
+        <div class="landing_box">
+            <h2 class="sub_title">Registration</h2>
+
+            <form action="/register" method="post">
+                {% with messages = get_flashed_messages(category_filter=["register"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <div class="register_input">
+                    <label>
+                        <input class="input" type="text" name="name" placeholder="Name"/>
+                    </label>
+                </div>
+                <div class="register_input">
+                    <label>
+                        <input class="input"  type="email" name="email" placeholder="Email"/>
+                    </label>
+                </div>
+                <div class="register_input">
+                    <label>
+                        <input class="input"  type="password" name="password" placeholder="Password"/>
+                    </label>
+                </div>
+                <div class="register_input">
+                    <label>
+                        <input class="input" type="password" name="password_two" placeholder="Confirm Password"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <input type="radio" id="true" name="isChef" value="true"/>
+                    <label for="true" class="text">I'm a Chef!</label>
+                </div>
+                <div class="register_input">
+                    <input type="radio" id="false" name="isChef" value="false" checked/>
+                    <label for="false" class="text">I'm a Learner!</label>
+                </div>
+
+                        <div class="action_button_box">
+                <button class="action_button" type="submit">
+                    Register
+                </button>
+                        </div>
+            </form>
+        </div>
+
+        {#login-section#}
+        <div class="landing_box">
+            <h2 class="sub_title">Login</h2>
+
+            <form class="login_form" action="/login" method="post">
+                {% with messages = get_flashed_messages(category_filter=["login"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <div class="register_input">
+                    <label>
+                        <input  class="input" type="text" name="email" placeholder="Email"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <label>
+                        <input class="input" type="password" name="password" placeholder="Password"/>
+                    </label>
+                </div>
+
+            <div class="action_button_box">
+                <button class="action_button" type="submit">
+                    Login
+                </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/dashboard.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="nav">
+        {% if user.isChef %}
+            <a class="action_button" href="/myRecipe">My Recipe</a>
+        {% endif %}
+        <a class="action_button" href="/logout">Logout</a>
+    </div>
+    <h1 class="subpage_title">
+        {% if user.isChef %}
+            Hello! Chef {{ user.name }}
+        {% else %}
+            Hello! {{ user.name }}
+        {% endif %}
+    </h1>
+
+
+
+    <div class="photo_container">
+        {% for r in recipe %}
+            <a class="photo" href="/recipe/{{ r.id }}">
+                <img src="{{ r.photo }}" alt="cake">
+            </a>
+        {% endfor %}
+    </div>
+
+</div>
+</body>
+</html>

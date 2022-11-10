@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <title>dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/dashboard.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a class="action_button" href="/dashboard">Dashboard</a>
+        <a class="action_button" href="/myRecipe/new">Create</a>
+        <a class="action_button" href="/logout">Logout</a>
+    </div>
+    <h1 class="subpage_title">Chef {{ user.name }} Recipes</h1>
+
+
+    <div class="photo_container">
+        {% for r in recipe %}
+        <a href="/myRecipe/edit/{{ r.id }}">
+                <img src="{{ r.photo }}" alt="cake">
+
+            <div class="">
+                <a href="/myRecipe/edit/{{ r.id }}" class="action_button">Edit</a>
+                <a href="/myRecipe/delete/{{ r.id }}" class="action_button">Delete</a>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

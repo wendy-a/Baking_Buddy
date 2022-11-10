@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <title>Create Recipe</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a class="action_button" href="/dashboard">Dashboard</a>
+            <a class="action_button" href="/logout">Logout</a>
+        </div>
+    {% with messages = get_flashed_messages(category_filter=["create"]) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+        <h1 class="subpage_title">Create recipe</h1>
+
+        <form class="form_input" action="/create_recipe" method="POST" enctype="multipart/form-data">
+            <div class="left">
+                <div class="register_input">
+                    <label for="name">
+                        <input type="text" class="recipe_input" name="name" placeholder="Name"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <label for="description">
+                        <input type="text" class="recipe_input" name="description" placeholder="Description"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <label for="ingredient">
+                        <input type="text" class="recipe_input" name="ingredient" placeholder="Ingredient"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <label for="instruction">
+                        <input type="text" class="recipe_input" name="instruction" placeholder="Instruction"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <label for="time">
+                        <input type="text" class="recipe_input" name="time" placeholder="mins"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="photo_section">
+                    <label for="photo" class="text">Upload Your Demo Picture<br>
+                        <input type="file" name="photo">
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="recipe_action_button"> Create</button>
+        </form>
+    </div>
+</body>
+</html>

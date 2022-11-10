@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <title>Update Recipe</title>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a class="action_button" href="/dashboard">Dashboard</a>
+            <a class="action_button" href="/logout">Logout</a>
+        </div>
+    {% with messages = get_flashed_messages(category_filter=["edit"]) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+        <h1 class="subpage_title">Edit recipe</h1>
+
+        <form class="form_input" action="/edit_recipe/{{ r.id }}" method="POST" enctype="multipart/form-data">
+            <div class="left">
+                <div class="register_input">
+                    <label for="name">
+                        <input type="text" class="recipe_input" name="name" value="{{ r.name }}" placeholder="Name"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <label for="description">
+                        <input type="text" class="recipe_input" name="description" value="{{ r.description }}" placeholder="Description"/>
+                    </label>
+                </div>
+
+                 <div class="register_input">
+                    <label for="ingredient">
+                        <input type="text" class="recipe_input" name="ingredient" value="{{ r.ingredient }}" placeholder="Ingredient"/>
+                    </label>
+                 </div>
+
+                <div class="register_input">
+                    <label for="instruction">
+                        <input type="text" class="recipe_input" name="instruction" value="{{ r.instruction }}" placeholder="Instruction"/>
+                    </label>
+                </div>
+
+                <div class="register_input">
+                    <label for="time">
+                        <input type="text" name="time" value="{{ r.time }}" placeholder="mins"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="right">
+                <img src="{{ r.photo }}" alt="cake"/>
+                    <label for="photo" class="text">Upload New Demo Image
+                        <input type="file" name="photo" value="">
+                    </label>
+
+            </div>
+
+            <button class="recipe_action_button" type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <title>Recipe</title>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a class="action_button" href="/dashboard">Dashboard</a>
+            <a class="action_button" href="/logout">Logout</a>
+        </div>
+
+        <h1 class="subpage_title">{{ r.name }}</h1>
+
+<table>
+    <div class="left">
+        <tr class="row">
+            <td class="sub_title">Descriptions:</td>
+            <td class="recipe_text">{{ r.description }}</td>
+        </tr>
+        <tr class="row">
+            <td class="sub_title">Instruction:</td>
+            <td class="recipe_text">{{ r.instruction }}</td>
+        </tr>
+        <tr class="row">
+            <td class="sub_title">Ingredient:</td>
+            <td class="recipe_text">{{ r.ingredient }}</td>
+        </tr>
+        <tr class="row">
+            <td class="sub_title">Estimate Time(min):</td>
+            <td class="recipe_text">{{ r.time }}</td>
+        </tr>
+    </div>
+    <div class="right">
+        <tr class="row">
+            <td><img src="{{ r.photo }}" width="200" height="200" alt="cake"></td>
+        </tr>
+    </div>
+</table>
+<h1 class="subpage_title">Learner's work</h1>
+
+<form class="form" action="/recipe_work/{{ r.id }}" method="POST" enctype="multipart/form-data">
+    <label for="photo">Upload mine
+        <input type="file" name="photo">
+    </label>
+    <button class="action_button" type="submit">
+        Upload
+    </button>
+</form>
+
+{% for w in work %}
+    <div class="photo_container">
+        <img src="{{ w.photo }}" alt="cake" width="200" height="200">
+    </div>
+        {% if w.user_id == user_id %}
+            <a class="action_button" href="/recipe/{{ w.recipe_id }}/{{ w.id }}/delete">Delete</a>
+        {% endif %}
+
+{% endfor %}
+
+
+
+
+</body>
+</html>
